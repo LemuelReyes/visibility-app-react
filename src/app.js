@@ -20,7 +20,7 @@ const render = () => {
             <button onClick={toggleVisibility}>{visibility ? 'Hide details' : 'Show details'}</button>
             {visibility && (
                 <p>
-                    Hey. these are the details that are revealed.
+                    Hey. these are the details that are revealed. Woot.
                 </p>
             )}
         </div>
