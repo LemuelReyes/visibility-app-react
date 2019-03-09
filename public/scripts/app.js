@@ -1,41 +1,63 @@
 'use strict';
 
-// 
-var visibility = false;
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var app = {
-    title: 'Visibility Toggle',
-    message: ''
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var toggleVisibility = function toggleVisibility() {
-    visibility = !visibility;
-    render();
-};
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-var appRoot = document.getElementById('app');
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var render = function render() {
-    var template = React.createElement(
-        'div',
-        null,
-        React.createElement(
-            'h1',
-            null,
-            app.title
-        ),
-        React.createElement(
-            'button',
-            { onClick: toggleVisibility },
-            visibility ? 'Hide details' : 'Show details'
-        ),
-        visibility && React.createElement(
-            'p',
-            null,
-            'Hey. these are the details that are revealed.'
-        )
-    );
-    ReactDOM.render(template, appRoot);
-};
+var VisibilityToggle = function (_React$Component) {
+    _inherits(VisibilityToggle, _React$Component);
 
-render();
+    function VisibilityToggle(props) {
+        _classCallCheck(this, VisibilityToggle);
+
+        var _this = _possibleConstructorReturn(this, (VisibilityToggle.__proto__ || Object.getPrototypeOf(VisibilityToggle)).call(this, props));
+
+        _this.state = {
+            visibility: false
+        };
+        _this.revealDetails = _this.revealDetails.bind(_this);
+        return _this;
+    }
+
+    _createClass(VisibilityToggle, [{
+        key: 'revealDetails',
+        value: function revealDetails() {
+            this.setState(function (prevState) {
+                return {
+                    visibility: !prevState.visibility
+                };
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return React.createElement(
+                'div',
+                null,
+                React.createElement(
+                    'h1',
+                    null,
+                    'Visibility Toggle'
+                ),
+                React.createElement(
+                    'button',
+                    { onClick: this.revealDetails },
+                    this.state.visibility ? 'Hide details' : 'Show details'
+                ),
+                this.state.visibility && React.createElement(
+                    'p',
+                    null,
+                    'Hey. these are the details that are revealed. Woot.'
+                )
+            );
+        }
+    }]);
+
+    return VisibilityToggle;
+}(React.Component);
+
+ReactDOM.render(React.createElement(VisibilityToggle, null), document.getElementById('app'));
